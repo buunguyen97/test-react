@@ -6,25 +6,38 @@ class MyComponent extends Component {
     address: "HCM",
     age: 25,
   };
-  handleClick = (e) => {
+  //   handleClick = (e) => {
+  //     this.setState({
+  //       name: "niiiiii",
+  //     });
+  //     console.log("click me rooi ne");
+  //     console.log("My name is ", this.state.name);
+  //   };
+  //   handleHover(e) {
+  //     console.log("SSSSSSSSSSSSSSSSSSSSSS");
+  //     console.log(e.pageX);
+  //   }
+  handleOnChangeInput = (event) => {
     this.setState({
-      name: "niiiiii",
+      name: event.target.value,
     });
-    console.log("click me rooi ne");
-    console.log("My name is ", this.state.name);
   };
-  handleHover(e) {
-    console.log("SSSSSSSSSSSSSSSSSSSSSS");
-    console.log(e.pageX);
-  }
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
   render() {
     return (
       <div>
         My name is {this.state.name} and I'm from {this.state.address}
         <br></br>
-        <button onMouseOver={this.handleHover}>Hover me</button>
-        <br></br>
-        <button onClick={this.handleClick}>Click me</button>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <input
+            type="text"
+            onChange={(event) => this.handleOnChangeInput(event)}
+          ></input>
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
